@@ -4,12 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * Punto de entrada de la aplicación de gestión de incidencias.
+ *
+ * @author Profesor
+ * @version 1.0
+ */
 public final class App {
 
     private App() {
     }
 
+    /**
+     *
+     *
+     * @param args argumentos de línea de comandos
+     *
+     */
     public static void main(String[] args) {
         GestorIncidencias gestor = new GestorIncidencias();
 
@@ -36,6 +47,14 @@ public final class App {
         }
     }
 
+    /**
+     *  Ejecuta el menú interactivo de la aplicación.
+     *
+     *  Permite al usuario listar incidencias, consultar las abiertas,
+     *  realizar búsquedas y consultar incidencias por su identificador.
+     *
+     *  @param gestor gestor encargado de gestionar las incidencias
+     */
     private static void ejecutarMenuInteractivo(GestorIncidencias gestor) {
         Scanner entrada = new Scanner(System.in);
         boolean continuar = true;
@@ -69,7 +88,10 @@ public final class App {
             System.out.println();
         }
     }
-
+    /*
+     * Muestra el menú principal del gestor por consola.
+     *
+     */
     private static void mostrarMenu() {
         System.out.println("----------------------------------------");
         System.out.println("1. Mostrar todas las incidencias");
@@ -80,6 +102,13 @@ public final class App {
         System.out.println("----------------------------------------");
     }
 
+    /*
+     * Solicita al usuario un texto y muestra las incidencias que coinciden
+     * con el criterio de búsqueda.
+     *
+     * @param entrada lector de la entrada estándar
+     * @param gestor gestor encargado de buscar las incidencias
+     */
     private static void buscarDesdeMenu(Scanner entrada, GestorIncidencias gestor) {
         System.out.print("Texto que deseas buscar: ");
         String texto = entrada.hasNextLine() ? entrada.nextLine().trim() : "";
@@ -92,6 +121,13 @@ public final class App {
         mostrar(gestor.buscar(texto));
     }
 
+    /*
+     *  Solicita al usuario el identificador de una incidencia y muestra
+     *  sus detalles.
+     *
+     *  @param entrada lector de la entrada estándar
+     *  @param gestor gestor encargado de consultar las incidencias
+     */
     private static void mostrarDetalleDesdeMenu(Scanner entrada, GestorIncidencias gestor) {
         System.out.print("Identificador de la incidencia: ");
         String id = entrada.hasNextLine() ? entrada.nextLine().trim() : "";
@@ -104,6 +140,13 @@ public final class App {
         mostrarDetalle(id, gestor);
     }
 
+    /**
+     *  Busca incidencias utilizando el texto recibido como argumento
+     *  de línea de comandos.
+     *
+     *  @param args argumentos que contienen el texto de búsqueda
+     *  @param gestor gestor encargado de buscar las incidencias
+     */
     private static void buscar(String[] args, GestorIncidencias gestor) {
         if (args.length < 2) {
             System.out.println("Debes indicar el texto que deseas buscar.");
@@ -114,6 +157,13 @@ public final class App {
         mostrar(gestor.buscar(texto));
     }
 
+    /**
+     * Muestra los detalles de una incidencia identificada mediante
+     * un argumento de línea de comandos.
+     *
+     * @param args argumentos que contienen el identificador de la incidencia
+     * @param gestor gestor encargado de consultar las incidencias
+     * */
     private static void mostrarDetalle(String[] args, GestorIncidencias gestor) {
         if (args.length < 2) {
             System.out.println("Debes indicar el identificador de la incidencia.");
@@ -123,6 +173,15 @@ public final class App {
         mostrarDetalle(args[1], gestor);
     }
 
+    /**
+     * Busca una incidencia por su identificador y muestra su información.
+     *
+     * Si la incidencia no existe, muestra el mensaje de la excepción
+     * correspondiente.
+     *
+     * @param id identificador de la incidencia que se desea consultar
+     * @param gestor gestor encargado de consultar las incidencias
+     */
     private static void mostrarDetalle(String id, GestorIncidencias gestor) {
         try {
             System.out.println(gestor.buscarPorId(id));
@@ -131,6 +190,14 @@ public final class App {
         }
     }
 
+    /**
+     *  Muestra por consola una lista de incidencias.
+     *
+     *  Si la lista está vacía, informa al usuario de que no se han
+     *  encontrado incidencias.
+     *
+     *  @param incidencias lista de incidencias que se desea mostrar
+     */
     private static void mostrar(List<Incidencia> incidencias) {
         if (incidencias.isEmpty()) {
             System.out.println("No se han encontrado incidencias.");
@@ -139,6 +206,9 @@ public final class App {
         incidencias.forEach(System.out::println);
     }
 
+    /**
+     *  Muestra la ayuda con los comandos disponibles y su descripción.
+     */
     private static void mostrarAyuda() {
         System.out.println("Gestor de incidencias");
         System.out.println("  ayuda              Muestra esta ayuda");
