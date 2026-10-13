@@ -57,24 +57,16 @@ Se recomienda Java 17 o superior, ya que el código utiliza expresiones `switch`
 
 ## Instalación y ejecución
 
-### 1. Compilar el proyecto
+### Compilar el proyecto
 
 Desde la raíz del proyecto, ejecuta:
 
+Con el wrapper de maven
 ```bash
-javac -d out src/es/centro/incidencias/*.java
+.\mvnw.cmd clean compile exec:java
 ```
 
-Este comando compila los archivos Java y guarda las clases generadas en el directorio `out`.
-
-### 2. Iniciar el menú interactivo
-
-Ejecuta la aplicación sin argumentos:
-
-```bash
-java -cp out es.centro.incidencias.App
-```
-
+Este comando compila los archivos Java y ejecuta el proyecto.
 Aparecerá un menú con las siguientes opciones:
 
 ```text
@@ -91,50 +83,6 @@ Aplicación de consulta de avisos de soporte del centro.
 ```
 
 Introduce el número de la opción deseada y sigue las instrucciones de la consola.
-
-## Uso mediante comandos
-
-También puedes ejecutar la aplicación directamente indicando una operación.
-
-### Mostrar la ayuda
-
-```bash
-java -cp out es.centro.incidencias.App ayuda
-```
-
-### Listar todas las incidencias
-
-```bash
-java -cp out es.centro.incidencias.App listar
-```
-
-### Listar las incidencias abiertas
-
-```bash
-java -cp out es.centro.incidencias.App abiertas
-```
-
-### Buscar incidencias
-
-```bash
-java -cp out es.centro.incidencias.App buscar impresora
-```
-
-La búsqueda permite introducir varias palabras:
-
-```bash
-java -cp out es.centro.incidencias.App buscar fallo de red
-```
-
-Se buscan coincidencias en el identificador y en el título de las incidencias, sin distinguir entre mayúsculas y minúsculas.
-
-### Consultar una incidencia por su identificador
-
-```bash
-java -cp out es.centro.incidencias.App detalle INC-001
-```
-
-Si el identificador no existe, se muestra un mensaje indicando que no se ha encontrado la incidencia.
 
 ## Datos de ejemplo
 
